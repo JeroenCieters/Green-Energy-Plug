@@ -4,6 +4,11 @@ A proof of concept for a "green plug" automation built in Home Assistant. This p
 
 By consuming power locally during peak production hours, it maximizes self-consumption and reduces grid dependency. When combined with power banks or batteries, it effectively creates an efficient home energy buffer.
 
+A photo of the concept and the technical lay-out are given below.
+<p align="center">
+<img src="Images/Hero shot.png" width="25%">
+<img src="Images/Schema.png" width="50%">
+  
 ## How It Works
 
 The automation monitors real-time data from a digital electricity meter (via a P1 connection). A digital meter handles grid data through two mutually exclusive streams:
@@ -14,8 +19,6 @@ Because net-metering ensures that only one of these sensors is active at a time,
 * **Turn ON:** If `Production > Consumption` (meaning there is an active solar surplus) AND the plug hasn't been turned off in the last 5 minutes.
 * **Turn OFF:** If `Production < Consumption` (meaning the household is actively pulling power from the grid again).
 
-<p align="center">
-<img src="afbeeldingen/logo.png" width="30%">
 ## Prerequisites
 
 To replicate this setup, you will need:
