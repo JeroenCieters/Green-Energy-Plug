@@ -1,0 +1,45 @@
+alias: V1
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - sensor.electricity_meter_energieverbruik
+  - trigger: state
+    entity_id:
+      - sensor.electricity_meter_energieproductie
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.electricity_meter_energieproductie') | float(0)
+              > states('sensor.electricity_meter_energieverbruik') | float(0) }}
+          - condition: state
+            entity_id: light.hue_smart_plug
+            state:
+              - "off"
+          - condition: template
+            value_template: >-
+              {{ (as_timestamp(now()) -
+              as_timestamp(states.light.hue_smart_plug.last_changed)) > 120 }}
+        sequence:
+          - type: turn_on
+            device_id: b142b5e1eaf04ef36d9729c0d520205e
+            entity_id: 055d3f53656d60d37abc72028a73e9d0
+            domain: light
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.electricity_meter_energieproductie') | float(0)
+              < states('sensor.electricity_meter_energieverbruik') | float(0) }}
+          - condition: state
+            entity_id: light.hue_smart_plug
+            state:
+              - "on"
+        sequence:
+          - type: turn_off
+            device_id: b142b5e1eaf04ef36d9729c0d520205e
+            entity_id: 055d3f53656d60d37abc72028a73e9d0
+            domain: light
+mode: single
