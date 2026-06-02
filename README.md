@@ -6,8 +6,8 @@ By consuming power locally during peak production hours, it maximizes self-consu
 
 A photo of the concept and the technical lay-out are given below.
 <p align="center">
-<img src="Images/Hero shot.png" width="40%">
-<img src="Images/Schema.png" width="40%">
+<img src="Images/Hero shot.png" width="30%">
+<img src="Images/Schema.png" width="50%">
   
 ## How It Works
 
